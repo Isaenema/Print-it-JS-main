@@ -16,18 +16,6 @@ const slides = [
     image: "slide4.png",
     tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
   },
-  {
-    image: "slide3.jpg",
-    tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>",
-  },
-  {
-    image: "slide3.jpg",
-    tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>",
-  },
-  {
-    image: "slide3.jpg",
-    tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>",
-  },
 ];
 
 const bannerImg = document.querySelector(".banner-img");
