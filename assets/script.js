@@ -18,28 +18,33 @@ const slides = [
   },
 ];
 
+// Sélection des éléments
 const bannerImg = document.querySelector(".banner-img");
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
-const dots = document.querySelector(".dots");
-// Initialisation de l'indice de la diapositive actuelle
-let currentIndex = 0;
-// Fonction pour mettre à jour le carrousel avec une la bonne img/text
+const dotsContainer = document.querySelector(".dots");
 
+// Initialisation de l'indice
+let currentIndex = 0;
+
+// Fonction pour mettre à jour le carrousel avec la bonne image/texte
 function updateCarousel(index) {
+  // Vérifie si l'index est inférieur à zéro, s'il l'est, va à la dernière diapositive
   if (index < 0) {
     currentIndex = slides.length - 1;
-  } else if (index >= slides.length) {
+  }
+  // Vérifie si l'index est supérieur ou égal au nombre de diapositives, s'il l'est, retourne à la première diapositive
+  else if (index >= slides.length) {
     currentIndex = 0;
   }
+
   // Récupère la diapositive actuelle en fonction de l'indice
   const slide = slides[currentIndex];
   bannerImg.src = `assets/images/slideshow/${slide.image}`;
-  bannerImg.alt = `Slide ${currentIndex + 1}`;
   document.querySelector("p").innerHTML = slide.tagLine;
 
   // Supprime la classe "dot_selected" de tous les points
-  const allDots = document.querySelectorAll(".dot");
+  const allDots = dotsContainer.querySelectorAll(".dot");
   allDots.forEach((dot) => {
     dot.classList.remove("dot_selected");
   });
@@ -48,33 +53,34 @@ function updateCarousel(index) {
   allDots[currentIndex].classList.add("dot_selected");
 }
 
+// Fonction pour générer les points du carrousel
 function generateDots() {
-  const dotsContainer = document.querySelector(".dots");
-  for (let i = 0; i < slides.length; i++) {
+  for (let index = 0; index < slides.length; index++) {
     const dot = document.createElement("div");
     dot.classList.add("dot");
+
     // Ajoute la classe "dot_selected" au premier point
-    if (i === 0) {
+    if (index === 0) {
       dot.classList.add("dot_selected");
     }
     dotsContainer.appendChild(dot);
   }
 }
 
-// Déclancheur gauche
+// Gestionnaire d'événement pour le clic sur la flèche gauche
 arrowLeft.addEventListener("click", () => {
   currentIndex--;
   updateCarousel(currentIndex);
   console.log("updateGauche");
 });
-// Déclancheur droite
+
+// Gestionnaire d'événement pour le clic sur la flèche droite
 arrowRight.addEventListener("click", () => {
   currentIndex++;
   updateCarousel(currentIndex);
-
   console.log("updateDroite");
 });
 
+// Génère les points du carrousel et initialise le carrousel avec l'indice actuel
 generateDots();
-
 updateCarousel(currentIndex);
