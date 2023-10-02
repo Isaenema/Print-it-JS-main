@@ -16,6 +16,10 @@ const slides = [
     image: "slide4.png",
     tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
   },
+  {
+    image: "slide4.png",
+    tagLine: "Autocollants <span>Soutenance</span>",
+  },
 ];
 
 // Sélection des éléments
@@ -44,6 +48,7 @@ function updateCarousel(index) {
   document.querySelector("p").innerHTML = slide.tagLine;
 
   // Supprime la classe "dot_selected" de tous les points
+  // Sinon bug
   const allDots = dotsContainer.querySelectorAll(".dot");
   allDots.forEach((dot) => {
     dot.classList.remove("dot_selected");
